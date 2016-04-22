@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit eutils toolchain-funcs flag-o-matic
+inherit eutils libtool toolchain-funcs flag-o-matic
 
 DESCRIPTION="standard informational utilities and process-handling tools"
 # http://packages.debian.org/sid/procps
@@ -45,6 +45,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.3.8-kill-neg-pid.patch # http://crbug.com/255209
 	epatch "${DISTDIR}"/${P}-remove_Unix98_output_limits.patch # 555200
 	epatch "${FILESDIR}"/${P}-sysctl-manpage.patch # 565304
+	elibtoolize #580792
 }
 
 src_configure() {
